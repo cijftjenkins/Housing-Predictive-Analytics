@@ -1,52 +1,36 @@
-# ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Ames Housing Price Prediction
 
-## Template Instructions
+## Table of Contents
+- [Introduction](#introduction)
+- [Business Requirements](#business-requirements)
+- [Dataset Content](#dataset-content)
+- [Hypotheses for Case Study](#hypotheses-for-case-study)
+- [The rationale to map the business requirements to the Data Visualisations and ML tasks](#the-rationale-to-map-the-business-requirements-to-the-data-visualisations-and-ml-tasks)
+- [Business Requirement 1](#business-requirement-1)
+- [Business Requirement 2](#business-requirement-2)
+- [ML Business Case](#ml-business-case)
+  - [Predict House Prices in Ames, Iowa](#predict-house-prices-in-ames--iowa)
+- [Regression Model](#regression-model)
+- [Dashboard Design](#dashboard-design)
+- [Unfixed Bugs](#unfixed-bugs)
+- [Conclusion](#conclusion)
+  - [Summary of Findings](#summary-of-findings)
+- [Results](#results)
+- [Deployment](#deployment)
+  - [Heroku](#heroku)
+- [Main Data Analysis and Machine Learning Libraries](#main-data-analysis-and-machine-learning-libraries)
+- [Credits and Acknowledgements](#credits-and-acknowledgements)
 
-Welcome,
+## Introduction
+The goal of this project is to predict house prices in Ames, Iowa, using a machine learning model. The project leverages a dataset from Kaggle and focuses on creating a model that can provide accurate price predictions, as well as a dashboard for visualizing the key factors that affect house prices.
 
-This is the Code Institute student template for the Heritage Housing project option in Predictive Analytics. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions. Click the `Use this template` button above to get started.
-
-You can safely delete the Template Instructions section of this README.md file,  and modify the remaining paragraphs for your own project. Please do read the Template Instructions at least once, though! It contains some important information about the IDE and the extensions we use.
-
-## How to use this repo
-
-1. Use this template to create your GitHub project repo
-
-2. Log into the cloud-based IDE with your GitHub account.
-
-3. On your Dashboard, click on the Create button
-
-4. Paste in the URL you copied from GitHub earlier
-
-5. Click Create
-
-6. Wait for the workspace to open. This can take a few minutes.
-
-7. Open a new terminal and `pip3 install -r requirements.txt`
-
-11. Open the jupyter_notebooks directory and click on the notebook you want to open.
-
-12. Click the kernel button and choose Python Environments.
-
-Note that the kernel says Python 3.8.18 as it inherits from the workspace so it will be Python-3.8.18 as installed by our template. To confirm this you can use `! python --version` in a notebook code cell.
-
-## Cloud IDE Reminders
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In your Cloud IDE, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with *Regenerate API Key*.
+## Business Requirements
+- **Requirement 1**: To examine the housing price statistics from the public dataset.
+We will conduct a correlation study to investigate the most suitable variables correlating to the sale price. To summarize the data after visualizing these variables vs the sale price.
+- **Requirement 2**: Implement a machine learning model that can predict house prices based on a set of input features.Develop a dashboard that allows Lydia to explore how the house attributes correlated with the sale price using data visualizations.
 
 ## Dataset Content
-
-* The dataset is sourced from [Kaggle](https://www.kaggle.com/codeinstitute/housing-prices-data). We then created a fictitious user story where predictive analytics can be applied in a real project in the workplace.
-* The dataset has almost 1.5 thousand rows and represents housing records from Ames, Iowa, indicating house profile (Floor Area, Basement, Garage, Kitchen, Lot, Porch, Wood Deck, Year Built) and its respective sale price for houses built between 1872 and 2010.
-
+The dataset used for this project is sourced from Kaggle and contains the following key features:
 |Variable|Meaning|Units|
 |:----|:----|:----|
 |1stFlrSF|First Floor square feet|334 - 4692|
@@ -74,73 +58,99 @@ You can now use the `heroku` CLI program - try running `heroku apps` to confirm 
 |YearRemodAdd|Remodel date (same as construction date if no remodelling or additions)|1950 - 2010|
 |SalePrice|Sale Price|34900 - 755000|
 
-## Business Requirements
-
-As a good friend, you are requested by your friend, who has received an inheritance from a deceased great-grandfather located in Ames, Iowa, to  help in maximising the sales price for the inherited properties.
-
-Although your friend has an excellent understanding of property prices in her own state and residential area, she fears that basing her estimates for property worth on her current knowledge might lead to inaccurate appraisals. What makes a house desirable and valuable where she comes from might not be the same in Ames, Iowa. She found a public dataset with house prices for Ames, Iowa, and will provide you with that.
-
-* 1 - The client is interested in discovering how the house attributes correlate with the sale price. Therefore, the client expects data visualisations of the correlated variables against the sale price to show that.
-* 2 - The client is interested in predicting the house sale price from her four inherited houses and any other house in Ames, Iowa.
-
-## Hypothesis and how to validate?
-
-* List here your project hypothesis(es) and how you envision validating it (them).
+## Hypotheses for Case Study
+I propsed the following hypothesis:
+- Houses with larger living areas (`GrLivArea`, `1stFlrSF`, `2ndFlrSF`) will have higher sale prices.
+- Higher `OverallQual` and `OverallCond` scores will lead to higher prices.
+- Newer homes (`YearBuilt`, `YearRemodAdd`) are expected to sell for more.
 
 ## The rationale to map the business requirements to the Data Visualisations and ML tasks
+- **Data Visualizations**: To uncover correlations and trends in the dataset, such as the impact of square footage and overall quality on sale prices.
+- **ML Tasks**: Build and evaluate a machine learning model to predict sale prices based on the provided features, automating the pricing process.
 
-* List your business requirements and a rationale to map them to the Data Visualisations and ML tasks.
+## Business Requirement 1
+- **Task**: Create data visualizations for key variables like `GrLivArea`, `OverallQual`, `TotalBsmtSF` to show their relationship with house prices.
+- **Outcome**: This will give stakeholders a clear understanding of the most impactful variables.
+
+## Business Requirement 2
+- **Task**: Build a machine learning regression model to predict house prices based on the available data.
+- **Outcome**: Use the model to predict house prices and assist buyers and sellers in making informed decisions.
 
 ## ML Business Case
+### Predict House Prices in Ames, Iowa
+- **Goal**: Build a regression model to predict house prices (`SalePrice`) based on features like area, year built, quality, and condition.
 
-* In the previous bullet, you potentially visualised an ML task to answer a business requirement. You should frame the business case using the method we covered in the course.
+The model success metrics are:
+- At least 0.7 for R2 score, on the train and test set (results can be found in Summary Section below).
+- The ML model is considered a failure if the model is wrong by more than 30% after 12 months, the prediction need to be consistent over a long period of time.
+- The output is defined as a numerical value for price in dollars. The prediction is made on the fly (not in batches).
+
+
+## Regression Model
+- **Pipeline**: 
+  - Preprocess data (handling missing values, scaling features).
+  - Implement a Random Forest Regressor to predict sale prices.
+  - Perform hyperparameter tuning using `RandomizedSearchCV`.
+- **Performance Metrics**:
+  - R² Score
+  - Mean Absolute Error (MAE)
+  - Mean Squared Error (MSE)
+  - Root Mean Squared Error (RMSE)
 
 ## Dashboard Design
+The dashboard is designed to provide interactive visualizations of key insights and predictions. It includes:
+- **Correlation Heatmap**: Shows the relationship between house features and sale prices.
+- **Scatter Plots**: Visualizing the relationship between important features like `GrLivArea`, `OverallQual`, and `TotalBsmtSF` with sale prices.
+- **Model Predictions**: Users can input house features and get predicted sale prices.
 
-* List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other items that your dashboard library supports.
-* Eventually, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project you were confident you would use a given plot to display an insight but eventually you needed to use another plot type)
+### Dashboard Images:
+<h3>Page 1: Quick Project Summary</h3>
+![](images/page1.png)
+
+<h3>Page 2: House Correlation Study</h3>
+![](images/page2.png)
+
+<h3>Page 3: Price Predictor Page</h3>
+![](images/page3.png)
+
+<h3>Page 4: Project Hypothesis</h3>
+![](images/page4.png)
+
+<h3>Page 4: ML House Sale Price Prediction</h3>
+![](images/page5.png)
 
 ## Unfixed Bugs
+- **Model Performance**: In some cases, the model may underperform on houses with extreme feature values.
+- **Future Enhancements**: Tuning the model further and incorporating more data can address this.
 
-* You will need to mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a big variable to consider, paucity of time and difficulty understanding implementation is not valid reason to leave bugs unfixed.
+## Conclusion
+- This project successfully addressed both business requirements: providing insights into the factors that affect house prices and using a machine learning model to predict house prices.
+  
+### Summary of Findings
+- **Key Features**: Features like `GrLivArea`, `OverallQual`, and `TotalBsmtSF` have the strongest correlation with house prices.
+- **Model Performance**: The Random Forest Regressor provided reasonable accuracy but could be further improved with additional tuning.
+
+## Results
+- **R² Score**: X (Train), X (Test)
+- **MAE**: X
+- **RMSE**: X
+- The model provides reasonably accurate predictions for house prices within the test data.
 
 ## Deployment
-
 ### Heroku
-
-* The App live link is: <https://YOUR_APP_NAME.herokuapp.com/>
-* Set the runtime.txt Python version to a [Heroku-20](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version.
-* The project was deployed to Heroku using the following steps.
-
-1. Log in to Heroku and create an App
-2. At the Deploy tab, select GitHub as the deployment method.
-3. Select your repository name and click Search. Once it is found, click Connect.
-4. Select the branch you want to deploy, then click Deploy Branch.
-5. The deployment process should happen smoothly if all deployment files are fully functional. Click the button Open App on the top of the page to access your App.
-6. If the slug size is too large then add large files not required for the app to the .slugignore file.
+The final dashboard and model are deployed on Heroku. You can interact with the application to make house price predictions based on input features.
+- **Deployment Steps**:
+  - Create a Flask/Dash application.
+  - Generate a `Procfile` and `requirements.txt`.
+  - Push the application to a Heroku environment.
 
 ## Main Data Analysis and Machine Learning Libraries
+- **Pandas**: For data manipulation and cleaning.
+- **NumPy**: For numerical computations.
+- **Scikit-learn**: For building the machine learning pipeline and model.
+- **Matplotlib & Seaborn**: For creating visualizations.
+- **Dash/Plotly**: For building the interactive dashboard.
 
-* Here you should list the libraries you used in the project and provide example(s) of how you used these libraries.
-
-## Credits
-
-* In this section, you need to reference where you got your content, media and extra help from. It is common practice to use code from other repositories and tutorials, however, it is important to be very specific about these sources to avoid plagiarism.
-* You can break the credits section up into Content and Media, depending on what you have included in your project.
-
-### Content
-
-* The text for the Home page was taken from Wikipedia Article A
-* Instructions on how to implement form validation on the Sign-Up page was taken from [Specific YouTube Tutorial](https://www.youtube.com/)
-* The icons in the footer were taken from [Font Awesome](https://fontawesome.com/)
-
-### Media
-
-* The photos used on the home and sign-up page are from This Open Source site
-* The images used for the gallery page were taken from this other open-source site
-
-## Acknowledgements (optional)
-
-
-* In case you would like to thank the people that provided support through this project.
-
+## Credits and Acknowledgements
+- **Dataset**: The dataset used in this project is the Ames Housing Dataset from Kaggle.
+- **Libraries**: The project leverages various Python libraries, including Pandas, NumPy, Scikit-learn, and Plotly.
