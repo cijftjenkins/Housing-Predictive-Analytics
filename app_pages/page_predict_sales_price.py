@@ -6,17 +6,22 @@ from the Churnometer Walkthrough Project 2.
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-# from app_pages.page_predict_sales_price import page_predict_sales_price
-from src.manage_files import load_clean_data, load_pkl_file
+import pickle  # Importing pickle to handle .pkl files
+from src.manage_files import load_clean_data
 from src.pipeline_perf_evaluation import regression_performance
 from src.pipeline_perf_evaluation import regression_evaluation_plots
+
+def load_pkl_file(file_path):
+    """ Load a pickle file using the pickle module """
+    with open(file_path, 'rb') as file:
+        return pickle.load(file)
 
 def page_predict_sales_price():
 
     # load sale price pipeline files
     ver = 'v3'
     path = f"outputs/ml_pipeline/{ver}"
-    sale_price_pipe = load_pkl_file(f"{path}/best_regressor_model.pkl")
+    sale_price_pipe = load_pkl_file(f"{path}/best_regressor_model.pkl")  # Loading using pickle
     feat_importance = pd.read_csv(f"{path}/feature_importance.csv")
     feat_importance_plot = plt.imread(f"{path}/feature_importance.png")
     X_train = pd.read_csv(f"{path}/X_train.csv")
@@ -36,8 +41,8 @@ def page_predict_sales_price():
         f"of feature selection.\n"
         f"* Feature selection achieved an R2 Score: 0.97 on the train set and "
         f"an R2 Score: 0.78 on the test set respectively.\n"
-        f"* The clients requirement was for an R2 Score of 0.75\n"
-        )
+        f"* The client's requirement was for an R2 Score of 0.75\n"
+    )
     st.write("---")
 
     # show pipeline steps

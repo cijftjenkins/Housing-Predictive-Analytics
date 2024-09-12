@@ -5,15 +5,21 @@ from the Churnometer Walkthrough Project 2.
 
 import streamlit as st
 import pandas as pd
-from src.manage_files import load_clean_data, load_pkl_file
+import pickle  # Importing pickle to handle .pkl files
+from src.manage_files import load_clean_data
 from src.predictive_analysis_ui import predict_sales_price
+
+def load_pkl_file(file_path):
+    """ Load a pickle file using the pickle module """
+    with open(file_path, 'rb') as file:
+        return pickle.load(file)
 
 def page_price_predictor():
     # load predict sale price files
     ver = 'v3'
     path = f"outputs/ml_pipeline/{ver}"
 
-    price_pipe = load_pkl_file(f"{path}/best_regressor_model.pkl")
+    price_pipe = load_pkl_file(f"{path}/best_regressor_model.pkl")  # Loading using pickle
     price_features = (pd.read_csv(f"{path}/X_train.csv")
                       .columns
                       .to_list()
@@ -90,7 +96,7 @@ def predict_inherited_house_price(price_pipe, price_features):
 def check_variables_for_UI(price_features):
     import itertools
 
-# Widget inputs are the features used
+    # Widget inputs are the features used
     #  for all pipelines
     # We combine them only using unique values
     combined_features = set(
