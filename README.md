@@ -105,19 +105,19 @@ The dashboard is designed to provide interactive visualizations of key insights 
 
 ### Dashboard Images:
 <h3>Page 1: Quick Project Summary</h3>
-![](images/page1.PNG)
+![Screenshot of Quick Project Summary Page](images/page1.png)
 
 <h3>Page 2: House Correlation Study</h3>
-![](images/page2.PNG)
+![Screenshot of House Correlation Study Page](images/page2.png)
 
 <h3>Page 3: Price Predictor Page</h3>
-![](images/page3.PNG)
+![Screenshot of Price Predictor Page](images/page3.png)
 
 <h3>Page 4: Project Hypothesis</h3>
-![](images/page4.PNG)
+![Screenshot of Project Hypothesis Page](images/page4.png)
 
 <h3>Page 4: ML House Sale Price Prediction</h3>
-![](images/page5.PNG)
+![Screenshot of ML House Sale Price Prediction Page](images/page5.png)
 
 ## Unfixed Bugs
 - **Model Performance**: In some cases, the model may underperform on houses with extreme feature values.
